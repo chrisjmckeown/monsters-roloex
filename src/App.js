@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
 import './App.css';
 
 class App extends Component {
@@ -22,6 +23,20 @@ class App extends Component {
       // },
     };
   }
+  //   this.handleChange = this.handleChange.bind(this);
+  // }
+
+  // handleChange(e) {
+  //   this.setState({ searchFeild: e.target.value }, () =>
+  //     console.log(this.state.searchFeild)
+  //   );
+  // }
+
+  handleChange = (e) => {
+    this.setState({ searchFeild: e.target.value }, () =>
+      console.log(this.state.searchFeild)
+    );
+  };
 
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -38,15 +53,11 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <input
-          type='search'
+        <h1>Monster Rolex</h1>
+        <SearchBox
           placeholder='search monsters'
-          onChange={(e) =>
-            this.setState({ searchFeild: e.target.value }, () =>
-              console.log(this.state.searchFeild)
-            )
-          }
-        ></input>
+          handleChange={this.handleChange}
+        />
         <CardList monsters={filteredMonsters} />
       </div>
     );
